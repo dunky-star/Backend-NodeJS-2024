@@ -1,16 +1,8 @@
-const http = require('http');
+'use strict';
 
-const server = http.createServer((req, res) => {
-  console.log(req.url, req.method, req.headers);
-  res.setHeader('Content-Type', 'text/html');
-  res.write('<html>');
-  res.write('<head><title>My first NodeJS server</title></head>');
-  res.write('</head>');
-  res.write('<body>');
-  res.write('<p>Hello from my NodeJS server!</p>');
-  res.write('</body>');
-  res.write('</html>');
-  res.end();
-});
+const http = require('http');
+const routes = require('./routes');
+
+const server = http.createServer(routes.handler);
 
 server.listen(3000);
