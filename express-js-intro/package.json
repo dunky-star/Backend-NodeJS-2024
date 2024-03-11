@@ -1,0 +1,18 @@
+{
+  "name": "express-js-intro",
+  "version": "1.0.0",
+  "description": "First Expressjs example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Geoffrey Duncan Opiyo",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
