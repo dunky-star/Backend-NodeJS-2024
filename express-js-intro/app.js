@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 
 // Custom routes
-const adminRoutes = require('./routes/admin');
+const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 // app.use('/', (req, res, next) => {
 //   // For requests to be use by all the middleware.
@@ -18,7 +18,9 @@ const shopRoutes = require('./routes/shop');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json()); // To parse the incoming requests with JSON payloads
 
-app.use('/admin', adminRoutes);
+app.use(express.static(path.join(__dirname, 'public'))); // For serving css static files in public directory
+
+app.use('/admin', adminData.routes);
 app.use(shopRoutes);
 
 // For page not found error code
