@@ -1,13 +1,19 @@
 const express = require('express');
-const path = require('path');
 
 const shopRouter = express.Router();
-const adminData = require('./admin');
+const Product = require('../models/product');
 
 shopRouter.get('/', (req, res, next) => {
   // "use" is for all http methods.
-  console.log(adminData.products);
-  res.sendFile(path.join(__dirname, '../', 'views', 'shop.html'));
+  const products = Product.fetchAll();
+  res.render('shop', {
+    prods: products,
+    pageTitle: 'shop',
+    path: '/',
+    hasProducts: products.length > 0,
+    activeShop: true,
+    productCSS: true,
+  });
 });
 
 module.exports = shopRouter;

@@ -3,8 +3,11 @@ const path = require('path');
 
 const app = express();
 
+// Templating engine
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 // Custom routes
-const adminData = require('./routes/admin');
+const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 // app.use('/', (req, res, next) => {
 //   // For requests to be use by all the middleware.
@@ -20,12 +23,12 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads
 
 app.use(express.static(path.join(__dirname, 'public'))); // For serving css static files in public directory
 
-app.use('/admin', adminData.routes);
+app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 // For page not found error code
 app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+  res.status(404).render('404', { pageTitle: 'Oops! Page not found...' });
 });
 
 app.listen(3000, () => console.log('Server is running on port 3000\n\n'));
