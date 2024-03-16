@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const errorController = require('./controllers/errorCtrl');
+const errorController = require('./controllers/error');
 
 const app = express();
 
@@ -10,11 +10,6 @@ app.set('views', 'views');
 // Custom routes
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-// app.use('/', (req, res, next) => {
-//   // For requests to be use by all the middleware.
-//   console.log('This always runs!');
-//   next();
-// });
 
 /*
  * Read the parameters from POST requests
