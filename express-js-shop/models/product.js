@@ -10,6 +10,7 @@ module.exports = class Product {
   }
 
   static fetchAll() {
+    // static allows calling the method on the class itself directly without instantiating.
     return products;
   }
 };
