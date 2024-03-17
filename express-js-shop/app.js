@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const errorController = require('./controllers/error');
+const mongoConnect = require('./util/database').mongoConnect;
 
 const app = express();
 
@@ -25,4 +26,6 @@ app.use(shopRoutes);
 // For page not found error code
 app.use(errorController.get404);
 
-app.listen(3000, () => console.log('Server is running on port 3000\n\n'));
+mongoConnect(() => {
+  app.listen(3000, () => console.log('Server is running on port 3000\n\n'));
+});
